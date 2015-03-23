@@ -5,11 +5,14 @@ window.Player = (function() {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
+	var GRAVITY = 170;
+	var JUMP_FORCE = 30;
 	var SPEED = 30; // * 10 pixels per second
 	var WIDTH = 5;
 	var HEIGHT = 5;
-	var INITIAL_POSITION_X = 30;
+	var INITIAL_POSITION_X = 20;
 	var INITIAL_POSITION_Y = 25;
+	var STARTGAME = false;
 
 	var Player = function(el, game) {
 		this.el = el;
@@ -23,22 +26,24 @@ window.Player = (function() {
 	Player.prototype.reset = function() {
 		this.pos.x = INITIAL_POSITION_X;
 		this.pos.y = INITIAL_POSITION_Y;
+		this.vel = { x: 0, y: 0 }; // a vector to move character width
+		STARTGAME = false;
 	};
 
 	Player.prototype.onFrame = function(delta) {
-		if (Controls.keys.right) {
-			this.pos.x += delta * SPEED;
-		}
-		if (Controls.keys.left) {
-			this.pos.x -= delta * SPEED;
-		}
-		if (Controls.keys.down) {
-			this.pos.y += delta * SPEED;
-		}
-		if (Controls.keys.up) {
-			this.pos.y -= delta * SPEED;
+		
+		if(Controls.didJump()) {
+			console.log("SPACE");
+			this.vel.y = -JUMP_FORCE;
+			STARTGAME = true;
 		}
 
+		// Gravity
+		if( STARTGAME){
+			this.vel.y += GRAVITY * delta;
+			this.pos.y += delta * this.vel.y;
+		}
+	    
 		this.checkCollisionWithBounds();
 
 		// Update UI
