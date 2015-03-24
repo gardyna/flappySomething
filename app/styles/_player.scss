@@ -1,12 +1,25 @@
 
+
 .Player {
     // Absolutely position entities at 0,0 and use transform to
     // move it around.
     position: absolute;
+    overflow: hidden;
     top: 0;
     left: 0;
-    width: em(50px);
-    height: em(50px);
+    width: em(34px);
+    height: em(24px);
+    background-position: 0px 0px;
+}
 
-    background: blue;
+.Player .Player-Sprite {
+	background-image: url('../images/flappy-bird.png');
+	width: em(102px);
+	height: em(24px);
+	animation: flap .3s steps(3, end) infinite;
+}
+
+@keyframes flap {
+	from {transform: translate3d(0, 0, 0);}
+	to {transform: translate3d(-102px, 0, 0);}
 }
