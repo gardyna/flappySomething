@@ -11,6 +11,7 @@ window.Game = (function() {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
+		this.pipes = new window.Pipes(this.el.find('.pipes'), this);
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -43,6 +44,9 @@ window.Game = (function() {
 	 */
 	Game.prototype.start = function() {
 		this.reset();
+
+		// start pipe object
+		this.pipes.drawPipes();
 
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
