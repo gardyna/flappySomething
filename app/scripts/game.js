@@ -10,12 +10,18 @@ window.Game = (function() {
 	var Game = function(el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
+		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
 		this.isPlaying = false;
-		this.pipes = new window.Pipes(this.el.find('.pipes'), this);
+		this.pipes.drawPipes();
+		
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
+	
+	Game.prototype.isPlaying = function(){
+		return this.isPlaying;
+	}
 
 	/**
 	 * Runs every frame. Calculates a delta and allows each game
@@ -46,7 +52,7 @@ window.Game = (function() {
 		this.reset();
 
 		// start pipe object
-		this.pipes.drawPipes();
+		this.pipes.startPipes();
 
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
@@ -66,6 +72,7 @@ window.Game = (function() {
 	 */
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
+		this.pipes.stop();
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;
