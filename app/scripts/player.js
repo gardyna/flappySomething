@@ -33,7 +33,6 @@ window.Player = (function() {
 	Player.prototype.onFrame = function(delta) {
 		
 		if(Controls.didJump()) {
-			console.log("SPACE");
 			this.vel.y = -JUMP_FORCE;
 			STARTGAME = true;
 		}
@@ -51,10 +50,14 @@ window.Player = (function() {
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
-		if (this.pos.x < 0 ||
-			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
-			this.pos.y < 0 ||
-			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
+		// ground check
+		var groundCheck = $('.Ground-moving').overlaps('.Player');
+		
+		if( typeof groundCheck[0] !== 'undefined'){
+			return this.game.gameover();
+		}
+		
+		if ( this.pos.y + HEIGHT > this.game.WORLD_HEIGHT || this.pos.y < 0) {
 			return this.game.gameover();
 		}
 	};

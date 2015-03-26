@@ -17,8 +17,29 @@ body {
   margin-left: -51.2em;
   margin-top: -28.8em;
   overflow: hidden;
-  background: red; }
+  background-image: url("../images/background-city.png"); }
 
+.Ground-moving {
+  background-image: url("../images/ground-moving.png");
+  position: absolute;
+  margin-top: 49em;
+  width: 108em;
+  height: 2.3em;
+  position: absolute;
+  animation: scrolling 0.45s linear infinite running; }
+
+.Ground-static {
+  position: absolute;
+  background-image: url("../images/ground-static.png");
+  margin-top: 51.3em;
+  width: 102.4em;
+  height: 8.7em; }
+
+@keyframes scrolling {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    transform: translate3d(-50px, 0, 0); } }
 .Player {
   position: absolute;
   overflow: hidden;

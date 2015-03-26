@@ -21,5 +21,30 @@
     overflow: hidden;
 
     // Some graphics
-    background: red;
+    background-image: url("../images/background-city.png");
+}
+
+//part of ground to animate
+.Ground-moving {
+	background-image: url("../images/ground-moving.png");
+	position: absolute;
+	margin-top: em(490px);
+	width: em(1080px);
+	height: em(23px);
+	position: absolute;
+	animation: scrolling 0.45s linear infinite running;
+}
+
+// don´t need to animate this
+.Ground-static {
+	position: absolute;
+	background-image: url('../images/ground-static.png');
+	margin-top: em(513px);
+	width: em(1024px);
+	height: em(87px);
+}
+
+@keyframes scrolling{
+	from { transform: translate3d(0, 0, 0); }
+	to { transform: translate3d(-50px, 0, 0) }
 }
