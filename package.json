@@ -1,7 +1,9 @@
 {
   "name": "html5-game-new",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.12.3"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
