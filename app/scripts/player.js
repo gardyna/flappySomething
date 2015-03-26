@@ -56,10 +56,18 @@ window.Player = (function() {
 		if( typeof groundCheck[0] !== 'undefined'){
 			return this.game.gameover();
 		}
-		
+		// extra ground check plus skycheck
 		if ( this.pos.y + HEIGHT > this.game.WORLD_HEIGHT || this.pos.y < 0) {
 			return this.game.gameover();
 		}
+		
+		var lowerCheck = $('.pipe_lower').overlaps('.Player');
+		var upperCheck = $('.pipe_upper').overlaps('.Player');
+		
+		if( typeof lowerCheck[0] !== 'undefined'
+			|| typeof upperCheck[0] !== 'undefined'){
+				return this.game.gameover();
+			}
 	};
 
 	return Player;

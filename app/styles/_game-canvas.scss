@@ -48,3 +48,27 @@
 	from { transform: translate3d(0, 0, 0); }
 	to { transform: translate3d(-50px, 0, 0) }
 }
+
+.pipe_upper {
+	position: absolute;
+	visibility: hidden;
+	top: 0%;
+	background-image: url('../images/pipe-above.png');
+	background-position: bottom left;
+	width: em(52px);
+	animation: scrolling-pipe 10s linear 1 running;
+}
+
+.pipe_lower {
+	position: absolute;
+	visibility: hidden;
+	bottom: 0%;
+	background-image: url('../images/pipe-below.png');
+	width: em(52px);
+	animation: scrolling-pipe 10s linear 1 running;
+}
+
+@keyframes scrolling-pipe {
+	from { transform: translate3d( 1024px, 0, 0); visibility: visible }
+	to { transform: translate3d( -52px, 0, 0); visibility: hidden }
+}
