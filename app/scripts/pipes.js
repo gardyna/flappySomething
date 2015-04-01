@@ -4,8 +4,9 @@ window.Pipes = (function () {
 	'use strict';
 
 	var Pipes = function (el, game) {
-		this.el = el
-		this.game = game
+		this.el = el;
+		this.game = game;
+        this.pos = { x: 0, y: 0 };
 	};
 
 	/**
@@ -16,7 +17,7 @@ window.Pipes = (function () {
 			// drawing logic here
 			if( playing ){
 				var HEIGHT = 51.3;
-				var gap = 450;
+				var gap = 350;
 				var bottom = Math.floor( Math.random() * 230) + 200;
 				var upper = HEIGHT - bottom + gap;
 				var pipeBottom = '<div class="pipe_lower" style="height:' + bottom + 'px;"></div>';
@@ -37,4 +38,5 @@ window.Pipes = (function () {
 	}
 
 	return Pipes;
+    
 })();

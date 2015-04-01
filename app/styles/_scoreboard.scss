@@ -8,7 +8,7 @@
 	margin-left: em(-200px);
 	box-sizing: border-box;
 
-	background: purple;
+	background: green;
 	text-align: center;
 
 	// Keep it off-screen
@@ -28,14 +28,13 @@
 
 	font-size: inherit;
 	padding: em(4px) em(15px);
-	border: em(2px) solid white;
+	border: em(1px) solid white;
 	background: none;
 	cursor: pointer;
 }
 
 .Scoreboard-restartText {
-	// NOTICE: You'll lose 10% of your score if you don't change this style!
-	font-family: 'Comic Sans MS', serif;
+	font-family: 'Helvetica', serif;
 	font-size: em(24px);
 	color: white;
 }
