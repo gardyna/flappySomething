@@ -6,7 +6,7 @@ window.Pipes = (function () {
 	var Pipes = function (el, game) {
 		this.el = el;
 		this.game = game;
-        this.pos = { x: 0, y: 0 };
+        //this.pos = { x: 0, y: 0 };
 	};
 
 	/**

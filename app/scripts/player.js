@@ -69,7 +69,7 @@ window.Player = (function() {
 				return this.game.gameover();
 			}
 	};
-
+    
 	return Player;
 
 })();

@@ -2,6 +2,7 @@
 window.Game = (function() {
 	'use strict';
 
+
 	/**
 	 * Main game class.
 	 * @param {Element} el jQuery element containing the game.
@@ -11,9 +12,12 @@ window.Game = (function() {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
-		this.isPlaying = false;
-		this.pipes.drawPipes();
+        
+        //here I want to let the game have access to score.js
+        //this.score = new window.Score(this.el.find('.Score'), this);
 		
+        this.isPlaying = false;
+		this.pipes.drawPipes();		
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -53,6 +57,9 @@ window.Game = (function() {
 
 		// start pipe object
 		this.pipes.startPipes();
+        
+        //starts counting score
+        //this.score.cnt();
 
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
@@ -70,20 +77,11 @@ window.Game = (function() {
 	/**
 	 * Signals that the game is over.
 	 */
+    
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
 		this.pipes.stop();
-
-		// Should be refactored into a Scoreboard class.
-		var that = this;
-		var scoreboardEl = this.el.find('.Scoreboard');
-		scoreboardEl
-			.addClass('is-visible')
-			.find('.Scoreboard-restart')
-				.one('click', function() {
-					scoreboardEl.removeClass('is-visible');
-					that.start();
-				});
+        this.score.showBoard();
 	};
 
 	/**
