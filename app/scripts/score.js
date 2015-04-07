@@ -1,5 +1,4 @@
-
-var playing = false;
+var counting = false;
 
 window.Score = (function () {
 	'use strict';
@@ -9,37 +8,34 @@ window.Score = (function () {
 		this.game = game;
 	};
 
-    /*
-    /   Show the scoreboard
-    */
-    Score.prototype.showBoard = function() {
-
+    Score.prototype.onTick = function(){
+        // counting logic here
+	    
         var that = this;
-		var scoreboardEl = this.el.find('.Scoreboard');
         
-		scoreboardEl
-			.addClass('is-visible')
-			.find('.Scoreboard-restart')
-            .one('click', function() {
-					scoreboardEl.removeClass('is-visible');
-					that.start();
-            }  
-    }; 
-        
-    Score.prototype.cnt = function(){
-        var cnt;
-        var scoreEl = this.el.find('.Score');        
-		setInterval(function(){
-			// counting logic here
-			if( playing ){
-                this.cnt++;
+        setTimeout(function(){
+            if( counting ){
+                that.points++;
                 //here I want to show the score
-                //scoreEl.
-			}
-		}, 2500) // update count every 2,5 second
+                that.el.text(that.points);
+                document.getElementById('tickSound').play();
+            }    
+        }, 1000);
 	};
     
-
+    Score.prototype.startCounter = function(){
+        this.points = 0;
+        this.el.text(0);
+        counting = false;
+        
+        setTimeout(function(){
+            counting = true;
+        }, 9000);
+    };
+    
+    Score.prototype.stop = function(){
+        counting = false;
+    }
     
 return Score;
 

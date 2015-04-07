@@ -19,6 +19,21 @@ body {
   overflow: hidden;
   background-image: url("../images/background-city.png"); }
 
+@keyframes animatedBackground {
+    0% { background-position: 108em 0; }
+    100% { background-position: -98px 0; }
+}
+.Cloud-moving {
+  background-image: url("../images/cloud-moving.png");
+    background-repeat: no-repeat;
+    animation: animatedBackground 20s linear infinite;
+  position: absolute;
+  margin-top: 50px;
+  width: 108em;
+  height: 41px;
+  position: absolute;
+}
+
 .Ground-moving {
   background-image: url("../images/ground-moving.png");
   position: absolute;
@@ -119,5 +134,9 @@ body {
 .Score {
   font-family: 'Helvetica', serif;
   font-size: 2.4em;
-  color: white; }
+  color: white; 
+  top: 5px;
+  left: 20px;
+  position: absolute;
+}
 /*# sourceMappingURL=main.css.map */

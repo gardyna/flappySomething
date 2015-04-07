@@ -12,9 +12,14 @@ window.Pipes = (function () {
 	/**
 	* insert pipe div's at random height at set intervals
 	*/
-	Pipes.prototype.drawPipes = function(){
+	/*Pipes.prototype.drawPipes = function(){
 		setInterval(function(){
-			// drawing logic here
+			
+		}, 2500) // create new set of pipes every 2.5 seconds
+	};*/
+    
+    Pipes.prototype.onTick = function(){
+        // drawing logic here
 			if( playing ){
 				var HEIGHT = 51.3;
 				var gap = 350;
@@ -25,8 +30,7 @@ window.Pipes = (function () {
 				$('.Pipes').append(pipeBottom);
 				$('.Pipes').append(pipeUpper);
 			}
-		}, 2500) // create new set of pipes every 2.5 seconds
-	};
+    };
 	
 	Pipes.prototype.stop = function(){
 		playing = false;
@@ -40,3 +44,32 @@ window.Pipes = (function () {
 	return Pipes;
     
 })();
+
+
+/*window.animal = function(){
+    
+    var animal = function(){
+        
+    }
+    
+    animal.prototype.makeSound = function(){
+        return 'cannot say anything'
+    };
+    
+    return animal;
+}
+
+myanimal = new animal();
+
+class duck extends animal {
+    public void makeSound(){
+        return "quak"
+    }
+}
+
+class cat extends animal {
+    public void makeSound(){
+        return "miau"
+    }
+}*/
+

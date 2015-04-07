@@ -2,7 +2,6 @@
 window.Game = (function() {
 	'use strict';
 
-
 	/**
 	 * Main game class.
 	 * @param {Element} el jQuery element containing the game.
@@ -14,15 +13,27 @@ window.Game = (function() {
 		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
         
         //here I want to let the game have access to score.js
-        //this.score = new window.Score(this.el.find('.Score'), this);
+        this.score = new window.Score(this.el.find('.Score'), this);
+        this.scoreboard = new window.Scoreboard(this.el.find('.Scoreboard'), this);
 		
         this.isPlaying = false;
-		this.pipes.drawPipes();		
+		// this.pipes.drawPipes();		
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
+        
+        var that = this;
+        setInterval(function(){
+            that.onTick()
+        }, 2500)
 	};
 	
+    Game.prototype.onTick = function(){
+            // start pipe object
+		    this.pipes.onTick();
+            this.score.onTick();
+    };
+    
 	Game.prototype.isPlaying = function(){
 		return this.isPlaying;
 	}
@@ -55,12 +66,9 @@ window.Game = (function() {
 	Game.prototype.start = function() {
 		this.reset();
 
-		// start pipe object
-		this.pipes.startPipes();
+        this.pipes.startPipes();
+        this.score.startCounter();
         
-        //starts counting score
-        //this.score.cnt();
-
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
@@ -81,7 +89,11 @@ window.Game = (function() {
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
 		this.pipes.stop();
-        this.score.showBoard();
+        this.score.stop();
+        this.scoreboard.showBoard(this.score.points);
+        
+        
+        // alert('i am here');
 	};
 
 	/**
