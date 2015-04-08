@@ -11,8 +11,7 @@ window.Score = (function () {
     Score.prototype.onTick = function(){
         // counting logic here
 	    
-        var that = this;
-        
+        var that = this;    
         setTimeout(function(){
             if( counting ){
                 that.points++;

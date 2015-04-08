@@ -11,13 +11,10 @@ window.Game = (function() {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
-        
-        //here I want to let the game have access to score.js
         this.score = new window.Score(this.el.find('.Score'), this);
         this.scoreboard = new window.Scoreboard(this.el.find('.Scoreboard'), this);
 		
         this.isPlaying = false;
-		// this.pipes.drawPipes();		
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -65,7 +62,6 @@ window.Game = (function() {
 	 */
 	Game.prototype.start = function() {
 		this.reset();
-
         this.pipes.startPipes();
         this.score.startCounter();
         
@@ -80,19 +76,18 @@ window.Game = (function() {
 	 */
 	Game.prototype.reset = function() {
 		this.player.reset();
+        
 	};
 
 	/**
 	 * Signals that the game is over.
 	 */
-    
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
+        document.getElementById('deadSound').play();
 		this.pipes.stop();
         this.score.stop();
         this.scoreboard.showBoard(this.score.points);
-        
-        
         // alert('i am here');
 	};
 

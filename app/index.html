@@ -32,6 +32,7 @@
             <div class="Pipes"></div>
             
             <div class="Scoreboard">
+                <span class="Scoreboard-text">Your score is: </span>                
                 <span class="Scoreboard-Points"></span>
                 <button class="Scoreboard-restart">
                     <span class="Scoreboard-restartText">Restart</span>
@@ -45,6 +46,8 @@
         </div>
 
         <audio id="tickSound" src="sounds/sfx_point.ogg" preload="auto"></audio>
+        <audio id="deadSound" src="sounds/sfx_die.ogg" preload="auto"></audio>
+        <audio id="wingSound" src="sounds/sfx_wing.ogg" preload="auto"></audio>
         
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
